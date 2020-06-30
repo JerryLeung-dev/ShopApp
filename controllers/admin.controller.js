@@ -11,7 +11,7 @@ exports.getAddProduct = (req, res, next) => {
 exports.postAddProduct = (req, res, next) => {
     const {title, imageUrl, description, price} = req.body;
     const id = shortid.generate();
-    const product = new Product(title, imageUrl, description, id);
+    const product = new Product(title, imageUrl, description,price, id);
     product.save();
     res.redirect('/');
 }
