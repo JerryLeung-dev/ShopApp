@@ -2,9 +2,9 @@ const Product = require('../models/product');
 const shortid = require('shortid');
 
 exports.getAddProduct = (req, res, next) => {
-    res.render('admin/add-product', {
+    res.render('admin/edit-product', {
                                 pageTitle: 'Add product',
-                                path: '/admin/git add-product',
+                                path: '/admin/add-product',
                               });
 }
 
@@ -28,7 +28,13 @@ exports.getProducts = (req, res, next) => {
 };
 
 exports.getEditProduct = (req, res, next) => {
-    const id = req.params.id;
-    console.log(id);
-    res.render('admin/edit-product');
+  const editMode = req.query.edit; //return string
+  if(!editMode) {
+    res.redirect('/');
+  }  
+  res.render('admin/edit-product',{
+      pageTitle: 'Edit Product',
+      path: 'add/edit-product',
+      editing: editMode
+    });
 }
